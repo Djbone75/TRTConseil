@@ -1,0 +1,303 @@
+:root {
+  box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+body * + * {
+  margin-top: 0.5em;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.centered {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.centered__column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+a {
+  font-size: large;
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+header {
+  width: 100%;
+}
+.header__user {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 0.1rem dotted black;
+  min-height: 5rem;
+  width: 100%;
+}
+
+.header__user a:first-child {
+  margin-right: auto;
+  margin-left: 2rem;
+}
+.header__user a:last-child {
+  margin-right: 2rem;
+}
+.header__user a {
+  margin: 0 1rem;
+}
+.header__links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  min-height: 3rem;
+  width: 100%;
+  border-bottom: 0.1rem black dotted;
+}
+.links {
+  margin: 0 1rem;
+}
+.logo {
+  position: relative;
+  font-size: x-large;
+  border: 1rem silver;
+  transition: 0.5s ease-in;
+  padding: 1rem;
+  top: -0.5rem;
+}
+.logo:hover {
+  transform: scale(1.5, 1.5);
+}
+.logo::after {
+  content: "l'emploi à portée d'aujourd'hui";
+  background-color: bisque;
+  position: absolute;
+  font-size: x-small;
+  left: 1.3rem;
+  bottom: -0.1rem;
+  transform: rotateZ(-5deg);
+  padding: 0.2rem;
+  transition: 0.5s ease-in;
+}
+.logo:hover::after {
+  transform: rotateZ(0deg);
+  bottom: 0.6rem;
+  padding: 0;
+}
+
+.table__users td {
+  width: 20rem;
+  height: 2rem;
+  text-align: center;
+}
+.table__users {
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  min-width: 60vw;
+}
+.table__users tr:nth-child(odd) {
+  background-color: bisque;
+}
+.table__users tr:nth-child(even) {
+  background-color: white;
+}
+.card-post {
+  width: 20rem;
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 0.1rem solid;
+  position: relative;
+  border-radius: 8px;
+  margin: 1rem;
+  box-shadow: 0.2rem 0.2rem 1rem 0.1rem rgb(127, 127, 127);
+}
+.card-post__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  background-color: bisque;
+  padding: 0.1rem 1rem;
+  min-width: 10rem;
+  min-height: 2rem;
+}
+.card-post__delete {
+  position: absolute;
+  top: -2rem;
+  right: 1rem;
+  width: 1.5rem;
+  font-size: x-large;
+}
+
+.card-post__description {
+  height: 20rem;
+  background-color: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-post__apply {
+  background-color: white;
+}
+.btn {
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  text-decoration: none;
+  font: inherit;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+.btn__delete {
+  display: inline-block;
+  padding: 0.1rem 0.1rem;
+  text-decoration: none;
+  font: inherit;
+  background: rgb(248, 36, 36);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.5s;
+  width: 2rem;
+  border: none;
+}
+.btn__delete:hover {
+  background: rgb(248, 36, 36);
+}
+.btn:hover {
+  box-shadow: rgb(219, 2, 2) rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+input {
+  min-height: 2rem;
+  min-width: 5rem;
+}
+.flash {
+  text-align: center;
+  color: brown;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+.presentation {
+  position: relative;
+  height: 30rem;
+  width: 80vw;
+  background-color: bisque;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  border-radius: 15px;
+  margin-top: 2rem;
+}
+.presentation__title {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  width: 50%;
+  padding: 2rem;
+}
+
+.presentation h2 {
+  padding: 0.5rem;
+}
+.presentation {
+  font-weight: bold 700;
+}
+.presentation__picture {
+  width: 50%;
+  margin: 0;
+  background-image: url("./images/brooke-cagle-g1Kr4Ozfoac-unsplash.jpg");
+  background-size: cover;
+}
+@media only screen and (max-width: 800px) {
+  .presentation {
+    flex-direction: column;
+  }
+  .presentation__picture {
+    width: 100%;
+    height: 50%;
+  }
+  .presentation__title {
+    width: 100%;
+    height: 50%;
+    top: 0;
+  }
+  .presentation h2 {
+    font-size: medium;
+    padding: 0;
+  }
+  .presentation h1 {
+    font-size: medium;
+  }
+  .presentation__btn button {
+    display: none;
+  }
+
+  .btn__presentation a {
+    display: none;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .presentation h2 {
+    font-size: small;
+    padding: 0;
+  }
+  .presentation h1 {
+    font-size: small;
+  }
+}
+.presentation__btn {
+  display: flex;
+  width: 80%;
+  align-items: end;
+  justify-content: end;
+}
+.btn__presentation {
+  width: 7rem;
+  height: 3rem;
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  text-decoration: none;
+  font: inherit;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border: none;
+}

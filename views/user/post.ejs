@@ -1,0 +1,43 @@
+<%- include ('../includes/header.ejs') %>
+  <div class="centered_column"> 
+      <div>
+        <h1>Postez une annonce</h1>
+      </div>
+      <form action="/post/<%= user.id %>" method="POST">
+        <div>
+          <input
+            type="text"
+            id="titre"
+            name="title"
+            placeholder="titre"
+            required
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            placeholder="ville"
+            required
+          />
+        </div>
+        <div><textarea
+          rows="20"
+          cols="40"          
+          type="textArea"
+            id="description"
+            name="description"
+            placeholder="description de l'annonce"
+            size="50"
+            class="post__text"
+            required
+          ></textarea>
+        </div>
+          <button class="btn" type="submit" value="Post" >postez</button>
+        </div>
+      </form>
+      <div class="flash"><%= success %><%= error %></div>
+  </div> 
+</body>
+</html>

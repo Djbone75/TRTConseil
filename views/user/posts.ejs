@@ -1,0 +1,69 @@
+<%- include ('../includes/header.ejs') %>
+
+  <h1>les annonces</h1>
+    <div class="centered">
+            
+      <% for (let post of posts) { %>
+       
+        
+        <%  if  (user && user.role=="consultant" && post.active == false) { %>
+
+          <div class="card-post">
+            <div class="card-post__title"> 
+              <%= post.title %> <%= post.city %> 
+            </div>
+
+          
+          <div class="card-post__description">
+            <%= post.description %>
+          </div>
+    
+          <div class="card-post__apply">
+            <form class="post-form" action="/posts/<%= post.id %>" method="post">
+              <button class="btn" type="submit">approuver</button>
+            </form>      
+          </div>
+        </div>
+      <% }%>
+
+      <% if ( post.active==true) { %>
+        <div class="card-post">
+          <div class="card-post__title"> 
+            <%= post.title %> - <%= post.city %>
+              
+            </div>
+            <div class="card-post__delete">
+              <%  if  (user  && post.author_id == user.id && user.role=="recruiter" ) { %>
+             <form class="post-form" action="/deletePost/<%= post.id %>" method="post">
+                  <button class="btn__delete" type="submit">X</button>
+                </form> 
+              <% }%>
+            </div>
+            
+            <div class="card-post__description">
+              <%  if  (user  && post.author_id == user.id ) { %>
+              <b>votre annonce</b> 
+              <% }%>
+              <%= post.description %>
+            </div>
+            
+            <div class="card-post__apply">
+
+              <% if ( user  && user.active==true && user.role == "candidate" && !post.candidats.includes(user.id) ) { %>
+                <form class="post-form" action="/posts/<%= user.id %>/<%= post.id %>" method="post">
+                  <button class="btn" type="submit">appliquer</button>
+                </form> 
+              <% } %>
+              <%  if (user && post.candidats.includes(user.id)) { %>
+                Vous êtes déjà inscrit
+              <% } %>
+            </div>
+          </div>
+        <% } %>     
+      <% } %>
+
+    </div>
+      <div><%  if (!user) { %>inscrivez vous pour pouvoir envoyer votre candidature<% } %></div>
+      <div class="flash"><%= success %><%= error %></div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+        <%- include ('../includes/header.ejs') %>
+<div class="centered__column">
+    <h1>Register</h1>
+
+    <form action="/user/register" method="POST">
+      
+      <div>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+      </div>
+      <div>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+      </div>
+      <select class="btn" name="role" id="role">
+    
+    <option value="candidate">candidat</option>
+    <option value="recruiter">recruteur</option>
+    <option value="consultant">consultant</option>
+</select>
+      <div>
+        <input class="btn" type="submit" value="Register" />
+      </div>
+
+     <div><a href="/user/login">Déjà enregistré ? Cliquez ici</a></div> 
+    </form>
+    <div class="flash"><%= success %><%= error %></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+    <%- include ('../includes/header.ejs') %>
+      
+    <div class="centered__column">
+      
+      <div>
+        <h3>Vous avez la possibilité de créér un consultant ou d'approuver une demande de Consultant</h3>
+      </div>   
+
+      <div>
+        <h1>Créér un consultant</h1>
+      </div>
+
+        <div>
+          <form action="/user/registerConsultant" method="POST">
+          
+            <div>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required
+              />
+            </div>
+
+            <div>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+            </div>
+
+            <div>
+              <input class="btn" type="submit" value="Register" />
+            </div>
+          </form>
+
+        </div>
+        
+        <div>
+          <h1>Liste des consultants :</h1>
+        </div>
+        
+        <div>
+          <table class="table__users">
+            <tr>
+                <th>email</th><th>nom</td><th>approuver</th>
+            </tr>
+            <% for (let user of users) { %>
+            <tr>
+              <td>
+                <%= user.email %>  
+              </td> 
+              <td>
+                <%= user.firstname%> <%= user.lastname%> 
+              </td>
+             
+              
+              <td>
+                <% if (user && user.active == false) { %>
+                <form class="product-form" action="/admin/approveConsultant/<%= user.id %>" method="POST">
+                  <button class="btn" type="submit">approuver</button>
+                </form>
+                <% }%>
+              </td>
+
+            </tr>
+              <% }%>
+          </table>
+          <div class="flash"><%= success %><%= error %></div>
+        </div>         
+    </div>   
+  </body>
+</html>

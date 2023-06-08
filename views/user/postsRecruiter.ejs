@@ -1,0 +1,29 @@
+<%- include ('../includes/header.ejs') %>
+
+    <h1>les annonces</h1>
+
+<div class="centered">
+            
+<table class="table__users">
+            <tr><th>titre</th><th>description</th><th>email</th><th>nom</th><th>cv</th></tr>
+          <% for (let post of posts) { %>
+            <% if ( post && post.active==true) { %>
+            <tr>
+            <td> <%= post.title %> </td>
+            <td ><%= post.description %></td>
+            <td><%= post.email %></td>
+            <td><%= post.firstname %> <%= post.lastname %></td>
+            
+            <td><% if ( post && post.cv) { %><a href="../user/<%= post.cv %>" download> <%= post.cv.slice(8) %></a><% } %></td>
+            
+            </tr>
+             <% }%>
+          <% } %>
+        </table>
+          </div>
+
+          <div class="flash"><%= success %><%= error %></div>
+        </div>
+     
+  </body>
+</html>

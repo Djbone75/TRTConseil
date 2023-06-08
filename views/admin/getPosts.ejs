@@ -1,0 +1,75 @@
+  <%- include ('../includes/header.ejs') %> 
+    <div class="centered__column">
+              
+      <div>
+        <h1>Posts en attente d'approbation  
+        </h1>
+      </div>
+      <div>
+        <table class="table__users">
+          
+          <tr>
+            <th>titre</th>
+            <th>entreprise du  recruteur</th>
+            <th>approuver</th>
+          </tr>
+        <% for (let post of posts) { %>
+          <% if(post.active == false) { %>
+            <tr>
+              <td>
+                <%= post.title %>  
+              </td> 
+              <td>
+                <%= post.enterprise %>
+              </td>
+              <td>
+                <form class="product-form" action="/admin/approvePost/<%= post.id %>" method="POST">
+                  <button class="btn" type="submit">approuver</button>
+                </form>
+              </td>
+
+            </tr>
+          <% }%>
+        <% }%>
+          </table>
+      </div>
+        
+            
+      <div><h1>Candidatures en attente</h1></div>
+        <div>
+          <table class="table__users">
+            <tr>
+              <th>titre</th>
+              <th>entreprise du  recruteur</th>
+              <th>id candidat</th>
+              <th>approuver</td>
+            </tr>
+        <% for (let post of postsConsultant) { %>
+          <% if(post.activeapply == false) { %>
+            <tr>
+              <td>
+                <%= post.title %>  
+              </td> 
+              <td>
+                <%= post.enterprise %>
+              </td>
+              <td>
+                <%= post.firstname %>  <%= post.lastname %>
+              </td>
+              <td>
+                <form class="product-form" action="/admin/approvePostCandidate/<%= post.candidate_id %>/<%= post.id %>" method="POST">
+                  <button class="btn" type="submit">approuver</button>
+                </form>
+              </td>
+
+            </tr>
+            
+          <% }%>
+        <% }%>
+          </table>
+        </div>   
+      </div> 
+      <div class="flash"><%= success %><%= error %></div>     
+    </div>
+  </body>
+</html>

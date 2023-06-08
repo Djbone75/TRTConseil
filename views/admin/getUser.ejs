@@ -1,0 +1,37 @@
+<%- include ('../includes/header.ejs') %>
+
+    <h1>utilisateurs en attente</h1>
+    
+    <div class="centered">
+        
+      <% if (users.length > 0) { %>
+        <table class="table__users">
+          <tr>
+            <th>email</th><th>nom</td><th>role</th><th></th>
+          </tr>
+        <% for (let user of users) { %>
+          <tr>
+            <td>
+              <%= user.email %>  </td> <td><%= user.firstname%><%= user.lastname%>
+            </td>
+            <td>
+              <%= user.role %>
+            </td>
+            <td>
+              <form class="product-form" action="/admin/approveUser/<%= user.id %>" method="POST">
+              <button class="btn" type="submit">approuver</button>
+              </form>       
+            </td>
+          </tr>
+        <% } %>
+      </table>
+              
+    </div>
+        <% }%>
+         <% if (users.length <= 0) { %>aucun utilisateur en attente <% }%>
+         <div class="flash"><%= success %><%= error %></div>
+    </div>
+      
+    
+  </body>
+</html>

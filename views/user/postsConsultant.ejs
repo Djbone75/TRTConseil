@@ -1,0 +1,44 @@
+    <%- include ('../includes/header.ejs') %>
+
+    <h1>les annonces</h1>
+
+    
+      <div class="centered">
+            
+<% for (let post of posts) { %>
+       
+        
+    <%  if  (user && user.role=="consultant" && post.active == false) { %>
+
+        <div class="card-post">
+          <div class="card-post__title"> <%= post.title %> </div>
+
+          <div><%= post.city %> </div>
+          <div class="card-post__description"><%= post.description %></div>
+    
+          <div class="card-post__apply">
+            <form class="post-form" action="/posts/<%= post.id %>" method="post">
+              <button class="btn" type="submit">approuver</button>
+            </form>      
+          </div>
+          </div>
+    <% }%>
+
+    <% if ( post.active==true) { %>
+
+          <div class="card-post">
+            <div class="card-post__title"> <%= post.title %> <%  if  (user  && post.author_id == user.id ) { %>
+           
+            <% }%></div>
+            <div class="card-post__delete"><%  if  (user  && post.author_id == user.id && user.role=="recruiter" ) { %>
+             <a href="">X</a>
+            <% }%></div>
+            <div><%= post.city %> </div>
+            <div class="card-post__description"><%= post.description %></div>
+            
+            <div class="card-post__apply">
+                         
+            </div>
+            <div class="flash"><%= success %><%= error %></div>
+          </div>
+    <% } %>  <% }%>

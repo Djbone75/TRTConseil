@@ -1,0 +1,70 @@
+    <%- include ('../includes/header.ejs') %>
+<div class="centered__column">
+  <div>
+    <h1>Mettre à jour ses informations</h1>
+<% if (user) { %>
+    <form action="/user/updateUser/<%= user.id %>" method="post">
+      <div>
+        <input
+          type="firstname"
+          id="firstname"
+          name="firstname"
+          placeholder="Prénom"
+          value="<%= user.firstname %>"
+          class="form-control"
+          
+        />
+      </div>
+      <div>
+        <input
+          type="lastname"
+          id="lastname"
+          name="lastname"
+          placeholder="Nom de Famille"
+          value="<%= user.lastname %>"
+          class="form-control"
+          
+        />
+      </div>
+      <div>
+        <input
+          type="enterprise"
+          id="enterprise"
+          name="enterprise"
+          placeholder="Entreprise"
+          value="<%= user.enterprise %>"
+          class="form-control"
+        />
+      </div>
+      <div>
+        <input
+          type="address"
+          id="address"
+          name="address"
+          placeholder="adresse"
+          value="<%= user.address %>"
+          class="form-control"
+        />
+      </div>
+      
+      <div><button class="btn" type="submit" value="update" >UPDATE</button></div>
+        
+      
+
+      
+    </form>
+    <% }  %>
+<% if (user && user.role=="candidate") { %>
+  <div>votre pdf : <a href="<%= user.cv %>" download> <%= user.cv.slice(8) %></a> </div>
+  <div>uploadez votre pdf</div>
+  <div><form action="/user/upload" method="post" enctype="multipart/form-data">
+  <input type="file" name="pdf" /></div>
+    
+  <div><button class="btn" type="submit" value="update" >UPLOAD</button></div>
+</form>
+<% }  %>
+</div>
+<div class="flash"><%= success %><%= error %></div>
+</div>
+  </body>
+</html>

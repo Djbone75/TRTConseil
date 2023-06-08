@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="/style.css" />
+  <title>TRT Conseil: le recrutement à portée d'aujourd'hui</title>
+<header>
+  <div class="header__user">
+        <a class="logo" href="/">TRT CONSEIL</a> 
+      <% if (!user) { %> 
+        <a href="/user/login">login</a> 
+      <%  } %>
+      <% if (!user) { %> 
+        <a href="/user/register">register</a> 
+      <%  } %>
+      
+      <% if (user) { %>
+        <a class="header" href="/user/logout">logout</a>
+      <%  } %>
+      <% if (user) { %> 
+        <a class="header" href="/user/updateUser"><span class="material-symbols-outlined">person</span></a> 
+      <%  } %>
+    </div>
+    <div class="header__links">
+      <% if ((user) && (user.active == true) && (user.role == 'consultant')) { %> 
+        <a class="links" href="/admin/getuser">approuvez les utilisateurs</a>
+        <a class="links" href="/admin/getposts">voir les annonces à approuver</a>  
+      <%  } %>
+      <% if ((user) && (user.active == true) && (user.role == 'admin')) { %> 
+        <a class="links" href="/admin/getConsultant">Créer ou approuver un consultant</a>  
+      <%  } %>
+      <% if ((user) && (user.active == true) && (user.role == 'recruiter')) { %> 
+        <a class="links" href="/post">postez une annonce</a>  
+      <%  } %>
+      <a class="links" href="/posts">voir les annonces</a>  
+    </div>
+</header>
+
+
+
