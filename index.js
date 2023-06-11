@@ -32,7 +32,7 @@ app.use(passport.session());
 app.use(flash());
 
 app.use(middleware);
-const PORT = 3000;
+const PORT = process.env.PORT || 3030;
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/uploads"));
 const postRoutes = require("./routes/posts");

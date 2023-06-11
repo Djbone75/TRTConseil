@@ -81,7 +81,7 @@ exports.approvePostCandidate = async (req, res) => {
   cv = candidate.cv || "";
 
   const filePath = path.join(__dirname, "../uploads", cv);
-  /* implementation de la fonctionnalité email => 
+
   var mailOptions = {
     from: "trtconseil@gmail.com",
     to: `"${email}"`,
@@ -95,8 +95,8 @@ exports.approvePostCandidate = async (req, res) => {
     } else {
       console.log("Email sent successfully to", email);
     }
-  }); 
-*/
+  });
+
   Posts.approvePostCandidate(candidateId, postId);
   req.flash("success", "candidature approuvée et email envoyé à " + email);
   res.redirect("/admin/getPosts");
