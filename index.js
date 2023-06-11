@@ -32,7 +32,8 @@ app.use(passport.session());
 app.use(flash());
 
 app.use(middleware);
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || "3000";
+
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/uploads"));
 const postRoutes = require("./routes/posts");
@@ -50,6 +51,6 @@ app.use("/", postRoutes);
 app.use("/admin", adminRoutes);
 app.use("/user", userRoutes);
 
-http.createServer(app).listen(PORT, () => {
-  console.log(`Listening on port ${PORT}...`);
-});
+const server = http.createServer(app);
+
+server.listen(PORT);
