@@ -49,7 +49,10 @@ exports.postPost = (req, res) => {
 };
 exports.deletePost = async (req, res) => {
   postId = req.params.postId;
-  await Post.deleteById(postId);
+  await Post.deleteById(postId).catch((err) => {
+    req.flash("error", err);
+    res.redirect("/login");
+  });
   req.flash("success", "post supprimé !");
   res.redirect("/posts");
 };

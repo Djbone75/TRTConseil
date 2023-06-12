@@ -32,22 +32,32 @@ exports.getRegister = (req, res) => {
 exports.postRegister = async (req, res, next) => {
   const { email, password, role } = req.body;
   let passwordHash = await bcrypt.hash(password, 12);
-  await pool.query(
-    `INSERT INTO "users" ("email", "password", "role")  
+  await pool
+    .query(
+      `INSERT INTO "users" ("email", "password", "role")  
              VALUES ($1, $2, $3)`,
-    [email, passwordHash, role]
-  );
+      [email, passwordHash, role]
+    )
+    .catch((err) => {
+      req.flash("error", err);
+      res.redirect("/login");
+    });
   req.flash("success", "nouvelle annonce ajoutée avec succès ");
   res.render("user/login", { user: req.user, message });
 };
 exports.postRegisterConsultant = async (req, res, next) => {
   const { email, password } = req.body;
   let passwordHash = await bcrypt.hash(password, 12);
-  await pool.query(
-    `INSERT INTO "users" ("email", "password", "role", "active")  
+  await pool
+    .query(
+      `INSERT INTO "users" ("email", "password", "role", "active")  
              VALUES ($1, $2, $3, $4)`,
-    [email, passwordHash, "consultant", true]
-  );
+      [email, passwordHash, "consultant", true]
+    )
+    .catch((err) => {
+      req.flash("error", err);
+      res.redirect("/login");
+    });
   req.flash("success", "consultant enregistré");
   res.redirect("/admin/getconsultant");
 };
@@ -65,7 +75,12 @@ exports.updateUser = async (req, res) => {
   lastname = req.body.lastname;
   enterprise = req.body.enterprise;
   address = req.body.address;
-  await User.updateUser(id, firstname, lastname, enterprise, address);
+  await User.updateUser(id, firstname, lastname, enterprise, address).catch(
+    (err) => {
+      req.flash("error", err);
+      res.redirect("/login");
+    }
+  );
   req.flash("success", "utilisateur mis à joue avec succes");
   res.redirect("/user/updateUser");
 };

@@ -21,7 +21,10 @@ exports.getUser = async (req, res) => {
   });
 };
 exports.getConsultant = async (req, res) => {
-  let { rows } = await User.fetchAll();
+  let { rows } = await User.fetchAll().catch((err) => {
+    req.flash("error", err);
+    res.redirect("/login");
+  });
 
   let result = rows
     .map((row) => {
@@ -31,14 +34,19 @@ exports.getConsultant = async (req, res) => {
       return user.role == "consultant";
     });
   req.flash("success", "consultant approuvé !");
-  console.log(res.locals.success);
+
   res.render("admin/getConsultant", {
     user: req.user,
     users: result,
   });
 };
 exports.getPosts = async (req, res) => {
-  posts = await Posts.getPosts().then((result) => result.rows);
+  posts = await Posts.getPosts()
+    .then((result) => result.rows)
+    .catch((err) => {
+      req.flash("error", err);
+      res.redirect("/login");
+    });
 
   postsConsultant = await Posts.getPostsConsultant().then(
     (result) => result.rows
