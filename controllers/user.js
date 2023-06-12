@@ -43,7 +43,7 @@ exports.postRegister = async (req, res, next) => {
       res.redirect("/login");
     });
   req.flash("success", "nouvelle annonce ajoutée avec succès ");
-  res.render("user/login", { user: req.user, message });
+  res.render("user/login", { user: req.user });
 };
 exports.postRegisterConsultant = async (req, res, next) => {
   const { email, password } = req.body;
