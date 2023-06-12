@@ -1,5 +1,5 @@
 const express = require("express");
-
+const path = require("path");
 const userController = require("../controllers/user");
 const {
   checkLoggedIn,
@@ -12,7 +12,7 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./uploads/");
+    cb(null, path.join("./uploads/"));
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname.toLowerCase().split(" ").join("-"));
