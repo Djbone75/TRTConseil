@@ -31,7 +31,15 @@ exports.getRegister = (req, res) => {
 };
 exports.postRegister = async (req, res, next) => {
   const { email, password, role } = req.body;
-  let passwordHash = await bcrypt.hash(password, 12);
+  users = await User.findByEmail(email);
+  if (users) {
+    req.flash("error", "l'utilisateur existe déjà");
+    res.redirect("login");
+  }
+  let passwordHash = await bcrypt.hash(password, 12).catch((err) => {
+    req.flash("error", err);
+    res.redirect("/");
+  });
   await pool
     .query(
       `INSERT INTO "users" ("email", "password", "role")  
@@ -43,7 +51,7 @@ exports.postRegister = async (req, res, next) => {
       res.redirect("/");
     });
   req.flash("success", "vous vous êtes enregistré avec succès ");
-  res.render("user/login", { user: req.user });
+  res.redirect("/login");
 };
 exports.postRegisterConsultant = async (req, res, next) => {
   const { email, password } = req.body;
