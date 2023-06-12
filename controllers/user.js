@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     cb(null, path.join(__dirname, "./uploads"));
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, file.originalname.toLowerCase().split(" ").join("-"));
   },
 });
 const upload = multer({ storage: storage });
