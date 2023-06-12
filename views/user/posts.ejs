@@ -41,9 +41,7 @@
             </div>
             
             <div class="card-post__description">
-              <%  if  (user  && post.author_id == user.id ) { %>
-              <b>ceci est votre annonce</b> <br>
-              <% }%>
+              
               <%= post.description %>
             </div>
             
@@ -58,6 +56,9 @@
                 Vous êtes déjà inscrit
               <% } %>
             </div>
+            <%  if  (user  && post.author_id == user.id ) { %>
+              <b>ceci est votre annonce</b> <br>
+              <% }%>
           </div>
         <% } %>     
       <% } %>
