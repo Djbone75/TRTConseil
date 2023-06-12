@@ -41,12 +41,7 @@ exports.getConsultant = async (req, res) => {
   });
 };
 exports.getPosts = async (req, res) => {
-  posts = await Posts.getPosts()
-    .then((result) => result.rows)
-    .catch((err) => {
-      req.flash("error", err);
-      res.redirect("/");
-    });
+  posts = await Posts.getPosts().then((result) => result.rows);
 
   postsConsultant = await Posts.getPostsConsultant().then(
     (result) => result.rows
