@@ -54,7 +54,7 @@
       
     </form>
     <% }  %>
-<% if (user && user.role=="candidate") { %>
+<% if (user && user.cv) { %>
   <div>votre pdf : <a href="<%= user.cv %>" download> <%= user.cv.slice(8) %></a> </div>
   <div>uploadez votre pdf</div>
   <div><form action="/user/upload" method="post" enctype="multipart/form-data">
