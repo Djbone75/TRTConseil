@@ -31,27 +31,22 @@ exports.getRegister = (req, res) => {
 };
 exports.postRegister = async (req, res, next) => {
   const { email, password, role } = req.body;
-  users = await User.findByEmail(email);
-  if (users) {
-    req.flash("error", "l'utilisateur existe déjà");
-    res.redirect("login");
-  }
-  let passwordHash = await bcrypt.hash(password, 12).catch((err) => {
-    req.flash("error", err);
-    res.redirect("/");
-  });
-  await pool
-    .query(
-      `INSERT INTO "users" ("email", "password", "role")  
+  await User.findByEmail(email).then(async (user) => {
+    if (user.rows[0] && user.rows[0].email) {
+      req.flash("error", "l'utilisateur existe déjà");
+      return res.redirect("/user/login");
+    } else {
+      let passwordHash = await bcrypt.hash(password, 12);
+      await pool.query(
+        `INSERT INTO "users" ("email", "password", "role")  
              VALUES ($1, $2, $3)`,
-      [email, passwordHash, role]
-    )
-    .catch((err) => {
-      req.flash("error", err);
-      res.redirect("/");
-    });
-  req.flash("success", "vous vous êtes enregistré avec succès ");
-  res.redirect("/login");
+        [email, passwordHash, role]
+      );
+
+      req.flash("success", "vous vous êtes enregistré avec succès ");
+      res.redirect("/user/login");
+    }
+  });
 };
 exports.postRegisterConsultant = async (req, res, next) => {
   const { email, password } = req.body;
