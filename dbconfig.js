@@ -2,8 +2,8 @@ const pg = require("pg");
 
 const connectionString = process.env.CONNECTION_STRING;
 const pool = new pg.Pool({}, (err, result) => {
-  if (("probleme : ", err)) {
-    console.log(err);
+  if (err) {
+    console.log("probleme : ", err);
   } else {
     console.log(result);
   }

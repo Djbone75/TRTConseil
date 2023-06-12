@@ -40,9 +40,9 @@ exports.postRegister = async (req, res, next) => {
     )
     .catch((err) => {
       req.flash("error", err);
-      res.redirect("/login");
+      res.redirect("/");
     });
-  req.flash("success", "nouvelle annonce ajoutée avec succès ");
+  req.flash("success", "vous vous êtes enregistré avec succès ");
   res.render("user/login", { user: req.user });
 };
 exports.postRegisterConsultant = async (req, res, next) => {
