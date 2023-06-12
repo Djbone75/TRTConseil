@@ -11,7 +11,7 @@ function initialize(passport) {
       [email],
       (err, results) => {
         if (err) {
-          throw err;
+          console.log(err);
         }
 
         if (results.rows.length > 0) {
@@ -19,7 +19,7 @@ function initialize(passport) {
 
           bcrypt.compare(password, user.password, (err, isMatch) => {
             if (err) {
-              console.log(err);
+              console.log("passport :", err);
             }
             if (isMatch) {
               return done(null, user);

@@ -51,7 +51,7 @@ exports.deletePost = async (req, res) => {
   postId = req.params.postId;
   await Post.deleteById(postId).catch((err) => {
     req.flash("error", err);
-    res.redirect("/login");
+    res.redirect("/");
   });
   req.flash("success", "post supprimé !");
   res.redirect("/posts");

@@ -23,7 +23,7 @@ exports.getUser = async (req, res) => {
 exports.getConsultant = async (req, res) => {
   let { rows } = await User.fetchAll().catch((err) => {
     req.flash("error", err);
-    res.redirect("/login");
+    res.redirect("/");
   });
 
   let result = rows
@@ -45,7 +45,7 @@ exports.getPosts = async (req, res) => {
     .then((result) => result.rows)
     .catch((err) => {
       req.flash("error", err);
-      res.redirect("/login");
+      res.redirect("/");
     });
 
   postsConsultant = await Posts.getPostsConsultant().then(
