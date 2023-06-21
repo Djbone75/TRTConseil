@@ -33,4 +33,5 @@ Ces dernières variables sont disponibles en créant un compte oauth qui est la 
  npm install
  
  pour tester le site
- npm start
+ "npm i nodemon" si nodemon n'est pas installé puis
+ "npm start" 
